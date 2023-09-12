@@ -2,10 +2,6 @@ const request = require('request');
 const fs = require('fs');
 
 const url = process.argv[2];
-const request = require('request');
-const fs = require('fs');
-
-const url = process.argv[2];
 const filePath = process.argv[3];
 
 request.get(url, (error, response, body) => {
@@ -14,11 +10,11 @@ request.get(url, (error, response, body) => {
   } else if (response.statusCode !== 200) {
     console.error(`Error: Received status code ${response.statusCode}`);
   } else {
-    fs.writeFile(filePath, body, { encoding: 'utf-8' }, (error) => {
-      if (error) {
-        console.error(`Error writing file: ${error.message}`);
+    fs.writeFile(filePath, body, { encoding: 'utf-8' }, (err) => {
+      if (err) {
+        console.error(`Error writing file: ${err}`);
       } else {
-        console.log(`File "${filePath}" has been created with the contents of the webpage.`);
+        console.log(`File "${filePath}" created successfully.`);
       }
     });
   }
