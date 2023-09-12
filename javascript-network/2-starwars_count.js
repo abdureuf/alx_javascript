@@ -1,7 +1,7 @@
 const request = require('request');
 
 const urlProcess = process.argv[2];
-const url = `https://swapi-api.alx-tools.com/api/people/18/`;
+
 
 request.get(urlProcess, (error, response, body) => {
   if (error) {
@@ -11,7 +11,7 @@ request.get(urlProcess, (error, response, body) => {
   } else {
     const filmsData = JSON.parse(body);
     const wedgeAntillesFilms = filmsData.results.filter((film) => {
-      return film.characters.includes(url);
+      return film.characters.includes(`https://swapi-api.alx-tools.com/api/people/18/`);
     });
     console.log(wedgeAntillesFilms.length);
   }
