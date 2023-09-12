@@ -13,9 +13,10 @@ request.get(url, (error, response, body) => {
     fs.writeFile(filePath, body, { encoding: 'utf-8' }, (err) => {
       if (err) {
         console.error(`Error writing file: ${err}`);
-      } else {
-        console.log(`File "${filePath}" created successfully.`);
-      }
+      } 
+      // else {
+      //   console.log(`File "${filePath}" created successfully.`);
+      // }
     });
   }
 });
