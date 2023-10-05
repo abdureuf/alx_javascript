@@ -4,9 +4,9 @@ function welcomeMessage(fullName) {
     };
   }
   
-  var guillaume = welcomeMessage('Guillaume');
-  var alex = welcomeMessage('Alex');
-  var fred = welcomeMessage('Fred');
+  const guillaume = welcomeMessage('Guillaume');
+  const alex = welcomeMessage('Alex');
+  const fred = welcomeMessage('Fred');
   
   guillaume();
   alex();
