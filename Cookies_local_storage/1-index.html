@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login to the website</title>
+</head>
+<body>
+  <h1>Login to the website</h1>
+  
+  <label for="firstname">First Name:</label>
+  <input type="text" id="firstname">
+
+  <label for="email">Email:</label>
+  <input type="text" id="email">
+
+  <button onclick="setCookies()">Log me in</button>
+  <div><h1>Cookies</h1></div>
+  <button onclick="showCookies()">Show the cookies</button>
+
+  <script>
+   function setCookies() {
+    const firstnameInput = document.getElementById('firstname');
+    const emailInput = document.getElementById('email');
+    const firstname = firstnameInput.value;
+    const email = emailInput.value;
+
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 10);
+
+    document.cookie = `firstname=${encodeURIComponent(firstname)}; expires=${expirationDate.toUTCString()}; path=/`;
+    document.cookie = `email=${encodeURIComponent(email)}; expires=${expirationDate.toUTCString()}; path=/`;
+
+    firstnameInput.value = '';
+    emailInput.value = '';
+  }
+  function showCookies() {
+  const cookies = document.cookie.split(';');
+  const container = document.createElement('p');
+  container.innerHTML = 'Cookies: ';
+  const cookieValues = {};
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    if (cookie.startsWith('firstname=')) {
+      const value = decodeURIComponent(cookie.substring('firstname='.length));
+      cookieValues.firstname = value;
+    } else if (cookie.startsWith('email=')) {
+      const value = decodeURIComponent(cookie.substring('email='.length));
+      cookieValues.email = value;
+    }
+  }
+
+  const values = Object.values(cookieValues);
+  container.innerHTML += values.join(' ');
+  document.body.appendChild(container);
+}
+  </script>
+</body>
+</html>
